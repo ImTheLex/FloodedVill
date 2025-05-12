@@ -1,0 +1,14 @@
+{
+    "name": "Sand.Runtime",
+    "rootNamespace": "Sand.Runtime",
+    "references": ["CustomTools"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

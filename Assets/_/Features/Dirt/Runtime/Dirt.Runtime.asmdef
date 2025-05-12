@@ -1,0 +1,16 @@
+{
+    "name": "Dirt.Runtime",
+    "rootNamespace": "Dirt.Runtime",
+    "references": [
+        "GUID:7c018dc24bcbf8747b1c1ad6d50e2172"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
