@@ -7,6 +7,13 @@ namespace Sand.Runtime
 {
     public class SandBehaviour : Tools
     {
+        [SerializeField]
+        private GameObject m_waterPrefab;
+
+        private void Awake()
+        {
+        }
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -19,10 +26,13 @@ namespace Sand.Runtime
             
         }
 
-        private void OnMouseDown()
+        /*private void OnMouseDown()
         {
             Info($"Transform : {gameObject.transform.position}");
+            Instantiate(m_waterPrefab, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
             
-        }
+        }*/
+        
     }
 }

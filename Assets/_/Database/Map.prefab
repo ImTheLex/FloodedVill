@@ -45,5 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isVerbose: 1
+  m_waterPrefab: {fileID: 2892879317900299356, guid: 8e70f8d32e5f9f54383863a94a2c577e, type: 3}
+  m_sandPrefab: {fileID: 8514057208554934617, guid: d51f5bfdd21015d43b9881a8f6ec2d81, type: 3}
+  m_piratePrefab: {fileID: 7435439057928868090, guid: 61947eca4182d5147aabded1db1055c0, type: 3}
+  m_seedPrefab: {fileID: 3328180953629580025, guid: a5507d35a9d63d54aaaa8c73c0f481a0, type: 3}
+  m_villagerPrefab: {fileID: 1163560845260560784, guid: 0ab258f477ccfa744908265d3a54139e, type: 3}
   m_levels: 000000000100000001000000000000000200000000000000
-  _cellPrefab: {fileID: 8514057208554934617, guid: d51f5bfdd21015d43b9881a8f6ec2d81, type: 3}
