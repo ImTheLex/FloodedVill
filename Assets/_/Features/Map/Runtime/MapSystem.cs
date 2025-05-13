@@ -39,7 +39,7 @@ public class MapSystem : Tools
     };
     
     public List<m_levelDesignEnum> m_levels = new List<m_levelDesignEnum>();
-
+    public List<GameObject> goList;
     #endregion
 
 
@@ -52,7 +52,7 @@ public class MapSystem : Tools
 
     void Start()
     {
-        
+        goList = new List<GameObject>();
         InstantiateCellsBasedOnLD();
         
     }
@@ -95,11 +95,18 @@ public class MapSystem : Tools
                         break;
                 }
 
-                Instantiate(_cellPrefab, new Vector2(nextPosition.x, nextPosition.y), Quaternion.identity);
-
+                var go = Instantiate(_cellPrefab, new Vector2(nextPosition.x, nextPosition.y), Quaternion.identity);
+                goList.Add(go);
+                
                 var currentCellList = GetNeighborsIndex(i);
                 //Lost here
                 Debug.Log($"List Count on cell : {i} + count : {currentCellList.Count}");
+                foreach (var VARIABLE in currentCellList)
+                {
+                    /*
+                    Debug.Log($"Neighboor Index : {VARIABLE}");
+                */
+                }
                 i++;
 
 
