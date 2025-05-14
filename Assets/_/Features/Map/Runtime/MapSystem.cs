@@ -40,6 +40,7 @@ public class MapSystem : Tools
     
     public List<m_levelDesignEnum> m_levels = new List<m_levelDesignEnum>();
     public List<GameObject> goList;
+    public List<Vector2> m_sandBlocksList;
     #endregion
 
 
@@ -47,6 +48,7 @@ public class MapSystem : Tools
 
     private void Awake()
     {
+        m_sandBlocksList = new List<Vector2>();
         _staticGridSize = new Vector2Int(m_staticGridState.GetLength(0), m_staticGridState.GetLength(1));
     }
 
@@ -54,7 +56,19 @@ public class MapSystem : Tools
     {
         goList = new List<GameObject>();
         InstantiateCellsBasedOnLD();
+        var water = GetWaterBlocksPosition();
+        foreach (var VARIABLE in water)
+        {
+            Debug.Log("WATER " + VARIABLE);
+        }
         
+        var sand = GetSandBlocksPosition();
+        
+        foreach (var VARIABLE in sand)
+        {
+            Debug.Log("SAND " + VARIABLE);
+        }
+
     }
 
     #endregion
@@ -99,20 +113,71 @@ public class MapSystem : Tools
                 goList.Add(go);
                 
                 var currentCellList = GetNeighborsIndex(i);
+                
+                
                 //Lost here
                 Debug.Log($"List Count on cell : {i} + count : {currentCellList.Count}");
-                foreach (var VARIABLE in currentCellList)
+                /*for (int v = 0; v < currentCellList.Count; v++)
                 {
-                    /*
-                    Debug.Log($"Neighboor Index : {VARIABLE}");
-                */
+                    if (IsDestructible((m_levelDesignEnum)currentCellList[v]))
+                    {
+                        m_staticGridState[sizeX, sizeY] = 0;
+                    }
+                }*/
+                /*for (int VARIABLE = 0; VARIABLE < m_staticGridState.Length; VARIABLE++) 
+                {
+                    Debug.Log("CELL ? " + VARIABLE + "Count STatic : " +  m_staticGridState.Length +  m_staticGridState[VARIABLE,0]);
                 }
+                */
+                
                 i++;
+
 
 
             }
         }
     }
+
+    private bool IsDestructible(m_levelDesignEnum level)
+    {
+        return level == m_levelDesignEnum.Sand;
+    }
+
+    private List<Vector2> GetWaterBlocksPosition()
+    {
+        List<Vector2> waterBlocksList = new List<Vector2>();
+        for (int posX = 0; posX < m_staticGridState.GetLength(0); posX++)
+        {
+            for (int posY = 0; posY < m_staticGridState.GetLength(1); posY++)
+            {
+                if (m_staticGridState[posX, posY] == (int)m_levelDesignEnum.Water)
+                {
+                    waterBlocksList.Add(new Vector2(posX, posY));
+
+                }
+            }
+        }
+        return waterBlocksList;
+    }
+    
+    private List<Vector2> GetSandBlocksPosition()
+    {
+        List<Vector2> sandBlocksList = new List<Vector2>();
+        for (int posX = 0; posX < m_staticGridState.GetLength(0); posX++)
+        {
+            for (int posY = 0; posY < m_staticGridState.GetLength(1); posY++)
+            {
+                if (m_staticGridState[posX, posY] == (int)m_levelDesignEnum.Sand)
+                {
+                    sandBlocksList.Add(new Vector2(posX, posY));
+
+                }
+            }
+        }
+        return sandBlocksList;
+    }
+    
+    
     private Vector2Int Get2DDimensionCoordinates(int index)
     {   
         return new Vector2Int(index% _staticGridSize.x, index/_staticGridSize.x);
