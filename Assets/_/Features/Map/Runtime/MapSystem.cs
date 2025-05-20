@@ -72,7 +72,6 @@ public class MapSystem : Tools
             {
 
                 Vector2Int nextPosition = Get2DDimensionCoordinates(i);
-                Info($"Length Item ?: {m_staticGridState[sizeX, sizeY]}");
                 switch (m_staticGridState[sizeX, sizeY])
                 {
                     case 0:
