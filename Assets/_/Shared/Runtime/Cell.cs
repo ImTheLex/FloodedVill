@@ -17,7 +17,7 @@ namespace Shared.Runtime
             Tree,
             Pirate,
             Villager,
-            
+            DrownVillager,
         }
 
         //Grid
@@ -38,6 +38,8 @@ namespace Shared.Runtime
         private Sprite _pirateSprite;
         [SerializeField]
         private Sprite _villagerSprite;
+        [SerializeField]
+        private Sprite _drownSprite;
         
 
         #endregion
@@ -88,6 +90,12 @@ namespace Shared.Runtime
                     break;
                 case CellType.Seed:
                     renderer.sprite = _seedSprite;
+                    break;
+                case CellType.Villager:
+                    renderer.sprite = _villagerSprite;
+                    break;
+                case CellType.DrownVillager:
+                    renderer.sprite = _drownSprite;
                     break;
             }
         }

@@ -63,6 +63,8 @@ namespace Shared.Runtime
                         }
                     }
                 }
+                CheckSeedIsAdjacentToWater();
+                CheckVillagerIsAdjacentToWater();
                 _waterFront = nextWave;
                 yield return new WaitForSeconds(m_propagationDelay);
             }
@@ -86,6 +88,11 @@ namespace Shared.Runtime
                     var block = go.GetComponent<Cell>();
                     block.Initialize(new Vector2Int(x,y),Cell.CellType.Sand,this);
                     _grid[x, y] = block;
+                    block.Initialize(new Vector2Int(x, y), 
+                        (x == 2 && y == 2) ? Cell.CellType.Seed : Cell.CellType.Sand, this);
+                    //block.Initialize(new Vector2Int(x, y), 
+                        //(x == 8 && y == 8) ? Cell.CellType.Villager : Cell.CellType.Sand, this);
+
                 }
             }
         }
@@ -100,6 +107,37 @@ namespace Shared.Runtime
             }
         }
 
+        public void CheckSeedIsAdjacentToWater()
+        {
+            for (int x = 0; x < m_width; x++)
+            {
+                for (int y = 0; y < m_height; y++)
+                {
+                    
+                    var cell = _grid[x, y];
+                    if (cell.m_type == Cell.CellType.Seed && IsAdjacentToWater(cell.m_gridPosition))
+                    {
+                        cell.SetType(Cell.CellType.Tree);
+                    }
+                }
+            }
+        }
+        
+        public void CheckVillagerIsAdjacentToWater()
+        {
+            for (int x = 0; x < m_width; x++)
+            {
+                for (int y = 0; y < m_height; y++)
+                {
+                    
+                    var cell = _grid[x, y];
+                    if (cell.m_type == Cell.CellType.Villager && IsAdjacentToWater(cell.m_gridPosition))
+                    {
+                        cell.SetType(Cell.CellType.DrownVillager);
+                    }
+                }
+            }
+        }
         private bool IsAdjacentToWater(Vector2Int pos)
         {
             Vector2Int[] directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
